@@ -12,6 +12,7 @@ $dependencies = <<SCRIPT
     DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
     DEBIAN_FRONTEND=noninteractive sh -c 'cd /vagrant && npm install'
     DEBIAN_FRONTEND=noninteractive pip install -r /vagrant/requirements/local.txt
+    DEBIAN_FRONTEND=noninteractive ln -s /vagrant/node_modules/grunt-cli/bin /home/vagrant/bin
 SCRIPT
 
 Vagrant.configure('2') do |config|

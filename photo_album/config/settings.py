@@ -117,7 +117,7 @@ class Common(Configuration):
 
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://localhost/photo_album')
+    DATABASES = values.DatabaseURLValue('postgres://root:P@ssw0rd!@localhost/photo_album')
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
