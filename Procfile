@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath="$PWD/photo_album" config.wsgi:application
