@@ -35,36 +35,22 @@
 
     <div class="header navbar">
       <div class="container">
-        <a class="navbar-brand" href="/">photo_album</a>
+        <a class="navbar-brand" href="/">Photo Album</a>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-
-          {% if request.user.is_authenticated %}
-            <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
-            <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
-          {% else %}
-            <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-            <li><a href="{% url 'account_login' %}">{% trans "Log In" %}</a></li>
-          {% endif %}
+          <li><a href="{% url 'photos' %}">Photos</a></li>
+          <li><a href="{% url 'videos' %}">Videos</a></li>
         </ul>
       </div>
     </div>
 
     <div class="container">
-        
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
-          {% endfor %}
-      {% endif %}
 
       {% block content %}
         <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
     </div> <!-- /container -->
-    
+
     {% block modal %}{% endblock modal %}
 
     <!-- Le javascript
@@ -84,4 +70,4 @@
     {% endblock javascript %}
   </body>
 </html>
- 
+

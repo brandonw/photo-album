@@ -31,50 +31,30 @@ class Common(Configuration):
     ########## APP CONFIGURATION
     DJANGO_APPS = (
         # Default Django apps:
-        'django.contrib.auth',
         'django.contrib.contenttypes',
-        'django.contrib.sessions',
         'django.contrib.sites',
-        'django.contrib.messages',
         'django.contrib.staticfiles',
 
         # Useful template tags:
         # 'django.contrib.humanize',
-
-        # Admin
-        'django.contrib.admin',
     )
     THIRD_PARTY_APPS = (
         'south',  # Database migration helpers:
-        'crispy_forms',  # Form layouts
-        'avatar',  # for user avatars
     )
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
-        'users',  # custom users app
         # Your stuff: custom apps go here
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
-    INSTALLED_APPS += (
-        # Needs to come last for now because of a weird edge case between
-        #   South and allauth
-        'allauth',  # registration
-        'allauth.account',  # registration
-        'allauth.socialaccount',  # registration
-    )
     ########## END APP CONFIGURATION
 
     ########## MIDDLEWARE CONFIGURATION
     MIDDLEWARE_CLASSES = (
-        'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
     ########## END MIDDLEWARE CONFIGURATION
@@ -133,7 +113,7 @@ class Common(Configuration):
 
     ########## GENERAL CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-    TIME_ZONE = 'America/Los_Angeles'
+    TIME_ZONE = 'America/New_York'
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
     LANGUAGE_CODE = 'en-us'
@@ -154,15 +134,11 @@ class Common(Configuration):
     ########## TEMPLATE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
     TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.contrib.auth.context_processors.auth',
-        "allauth.account.context_processors.account",
-        "allauth.socialaccount.context_processors.socialaccount",
         'django.core.context_processors.debug',
         'django.core.context_processors.i18n',
         'django.core.context_processors.media',
         'django.core.context_processors.static',
         'django.core.context_processors.tz',
-        'django.contrib.messages.context_processors.messages',
         'django.core.context_processors.request',
         # Your stuff: custom template context processers go here
     )
@@ -217,8 +193,6 @@ class Common(Configuration):
 
     ########## AUTHENTICATION CONFIGURATION
     AUTHENTICATION_BACKENDS = (
-        "django.contrib.auth.backends.ModelBackend",
-        "allauth.account.auth_backends.AuthenticationBackend",
     )
 
     # Some really nice defaults
@@ -317,20 +291,6 @@ class Production(Common):
     ########## SECRET KEY
     SECRET_KEY = values.SecretValue()
     ########## END SECRET KEY
-
-    ########## django-secure
-    INSTALLED_APPS += ("djangosecure", )
-
-    # set this to 60 seconds and then to 518400 when you can prove it works
-    SECURE_HSTS_SECONDS = 60
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = values.BooleanValue(True)
-    SECURE_FRAME_DENY = values.BooleanValue(True)
-    SECURE_CONTENT_TYPE_NOSNIFF = values.BooleanValue(True)
-    SECURE_BROWSER_XSS_FILTER = values.BooleanValue(True)
-    SESSION_COOKIE_SECURE = values.BooleanValue(False)
-    SESSION_COOKIE_HTTPONLY = values.BooleanValue(True)
-    SECURE_SSL_REDIRECT = values.BooleanValue(True)
-    ########## end django-secure
 
     ########## SITE CONFIGURATION
     # Hosts/domain names that are valid for this site
