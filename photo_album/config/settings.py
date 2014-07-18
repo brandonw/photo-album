@@ -246,6 +246,8 @@ class Common(Configuration):
 
 
     ########## Your common stuff: Below this line define 3rd party libary settings
+    PHOTOALBUM_BASE_DIR = "/media/album/Photos"
+    VIDEOALBUM_BASE_DIR = "/media/album/Videos"
 
 
 class Local(Common):
