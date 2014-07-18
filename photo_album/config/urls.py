@@ -6,16 +6,30 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
+import views
+
 urlpatterns = patterns('',
     url(r'^$',
         TemplateView.as_view(template_name='pages/home.html'),
         name="home"),
     url(r'^photos/$',
-        TemplateView.as_view(template_name='pages/photos.html'),
+        views.PhotosView.as_view(),
         name="photos"),
+    url(r'^photos/(?P<photo_dir>[^/]*)$',
+        views.PhotosDirView.as_view(),
+        name="photos_dir"),
+    #url(r'^photos/([^/]*)/([^/]*)$',
+        #TemplateView.as_view(template_name='pages/photo.html'),
+        #name="photo"),
     url(r'^videos/$',
         TemplateView.as_view(template_name='pages/videos.html'),
         name="videos"),
+    url(r'^videos/([^/]*)$',
+        TemplateView.as_view(template_name='pages/videos_dir.html'),
+        name="videos_dir"),
+    #url(r'^videos/([^/]*)/([^/]*)$',
+        #TemplateView.as_view(template_name='pages/video.html'),
+        #name="video"),
 
     # Your stuff: custom urls go here
 

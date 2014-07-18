@@ -1,1 +1,11 @@
 {% extends "base.html" %}
+
+{% block title %}Photo Album - Photos{% endblock %}
+
+{% block content %}
+<ul>
+{% for dir in photo_dirs %}
+<li><a href="{{ dir }}">{{ dir }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
