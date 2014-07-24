@@ -25,6 +25,9 @@ from configurations import Configuration, values
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+def show_toolbar(request):
+    return True
+
 
 class Common(Configuration):
 
@@ -97,7 +100,7 @@ class Common(Configuration):
 
     ########## DATABASE CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-    DATABASES = values.DatabaseURLValue('postgres://root:P@ssw0rd!@localhost/photo_album')
+    DATABASES = values.DatabaseURLValue('postgres:///photo_album')
     ########## END DATABASE CONFIGURATION
 
     ########## CACHING
@@ -273,11 +276,9 @@ class Local(Common):
 
     INTERNAL_IPS = ('127.0.0.1',)
 
+    DEBUG_TOOLBAR_PATCH_SETTINGS = values.BooleanValue(False)
     DEBUG_TOOLBAR_CONFIG = {
-        'DISABLE_PANELS': [
-            'debug_toolbar.panels.redirects.RedirectsPanel',
-        ],
-        'SHOW_TEMPLATE_CONTEXT': True,
+        'SHOW_TOOLBAR_CALLBACK': 'config.settings.show_toolbar',
     }
     ########## end django-debug-toolbar
 
@@ -299,8 +300,6 @@ class Production(Common):
     # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
     ALLOWED_HOSTS = ["*"]
     ########## END SITE CONFIGURATION
-
-    INSTALLED_APPS += ("gunicorn", )
 
     ########## STORAGE CONFIGURATION
     # See: http://django-storages.readthedocs.org/en/latest/index.html
