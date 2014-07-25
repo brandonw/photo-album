@@ -1,5 +1,5 @@
 import os
-from config.settings import PHOTOALBUM_BASE_DIR
+from config.settings import PHOTOALBUM_BASE_DIR, PHOTOALBUM_REWRITE
 from django.views.generic.base import TemplateView
 
 class PhotosView(TemplateView):
@@ -21,7 +21,8 @@ class PhotosDirView(TemplateView):
         photo_filenames = os.listdir(os.path.join(PHOTOALBUM_BASE_DIR,
                                                   context['photo_dir']))
         photo_dir = context['photo_dir']
-        photos = [create_photo(photo_dir, filename) for filename in photo_filenames]
+        photos = [create_photo(photo_dir, filename) for filename in
+                photo_filenames if 'thumb' not in filename]
         context['photos'] = photos
         return context
 
@@ -33,5 +34,5 @@ class Photo:
 def create_photo(photo_dir, filename):
     pieces = os.path.splitext(filename)
     thumb_file = pieces[0] + '.thumb' + pieces[1]
-    return Photo(os.path.join(PHOTOALBUM_BASE_DIR, photo_dir, thumb_file),
-                 os.path.join(PHOTOALBUM_BASE_DIR, photo_dir, filename))
+    return Photo(os.path.join(PHOTOALBUM_REWRITE, photo_dir, thumb_file),
+                 os.path.join(PHOTOALBUM_REWRITE, photo_dir, filename))

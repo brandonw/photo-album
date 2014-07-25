@@ -32,6 +32,10 @@ server {
 		alias /vagrant/staticfiles/;
 	}
 
+	location /album/ {
+		root /media/;
+	}
+
 	location / {
 		include            uwsgi_params;
 		uwsgi_pass         uwsgicluster;

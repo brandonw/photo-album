@@ -7,7 +7,7 @@ Photo dir: {{ photo_dir }}
 
 <ul>
 {% for photo in photos %}
-<li><a href="{{ photo.image_path }}">{{ photo.thumb_path }}</a></li>
+<li><a href="{{ photo.image_path }}"><img src="{{ photo.thumb_path }}" /></a></li>
 {% endfor %}
 </ul>
 
