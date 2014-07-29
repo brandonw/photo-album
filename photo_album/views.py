@@ -9,6 +9,7 @@ class PhotosView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PhotosView, self).get_context_data(**kwargs)
         photo_dirs = os.listdir(PHOTOALBUM_BASE_DIR)
+        photo_dirs.sort()
         context['photo_dirs'] = photo_dirs
         return context
 
@@ -20,6 +21,7 @@ class PhotosDirView(TemplateView):
         context = super(PhotosDirView, self).get_context_data(**kwargs)
         photo_filenames = os.listdir(os.path.join(PHOTOALBUM_BASE_DIR,
                                                   context['photo_dir']))
+        photo_filenames.sort()
         photo_dir = context['photo_dir']
         photos = [create_photo(photo_dir, filename) for filename in
                 photo_filenames if 'thumb' not in filename]
