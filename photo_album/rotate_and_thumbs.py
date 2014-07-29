@@ -26,6 +26,7 @@ for infile in os.listdir(sys.argv[1]):
                     elif exif[orientation] == 8:
                         image = image.transpose(Image.ROTATE_90)
 
+            image.save(inpath)
             image.thumbnail(size, Image.ANTIALIAS)
             image.save(outpath, 'JPEG')
         except IOError as ex:
