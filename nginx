@@ -27,6 +27,7 @@ server {
 
 	# Make site accessible from http://localhost/
 	server_name localhost;
+	sendfile off;
 
 	location /static/ {
 		alias /vagrant/staticfiles/;

@@ -3,11 +3,17 @@
 {% block title %}Photo Album - {{ photo_dir }}{% endblock %}
 
 {% block content %}
-Photo dir: {{ photo_dir }}
+<h2>{{ photo_dir }}<small>{{ start }} - {{ end }} of {{ total }} photos</small></h2>
 
-<ul>
+<ul class="list-inline">
 {% for photo in photos %}
-<li><a href="{{ photo.image_path }}"><img src="{{ photo.thumb_path }}" /></a></li>
+<li>
+	<a href="{{ photo.image_path }}">
+		<img src="{{ photo.thumb_path }}"
+		     class="img-responsive img-thumbnail"
+		     alt="{{ photo.name }}" />
+	</a>
+</li>
 {% endfor %}
 </ul>
 
