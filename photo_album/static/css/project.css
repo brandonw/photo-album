@@ -47,21 +47,21 @@ img.ri {
 img.ri:empty {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate -50%, -50%;
-  -moz-transform: translate -50%, -50%;
-  -ms-transform: translate -50%, -50%;
-  -o-transform: translate -50%, -50%;
-  transform: translate -50%, -50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (orientation: portrait) {
-  /* line 52, ../sass/project.scss */
+  /* line 56, ../sass/project.scss */
   img.ri {
     max-width: 90%;
   }
 }
 @media screen and (orientation: landscape) {
-  /* line 56, ../sass/project.scss */
+  /* line 60, ../sass/project.scss */
   img.ri {
     max-height: 90%;
   }
