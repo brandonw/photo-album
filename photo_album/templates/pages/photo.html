@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ photo_dir }}/{{ photo_file }}{% endblock %}
+
+{% block content %}
+
+<div class="img-container">
+    <img src="{{ photo_path }}" class="ri" />
+</div>
+
+{% endblock %}

@@ -8,7 +8,7 @@ $dependencies = <<SCRIPT
     DEBIAN_FRONTEND=noninteractive su - postgres -c 'createdb photo_album'
     DEBIAN_FRONTEND=noninteractive su - postgres -c 'psql -c "GRANT ALL PRIVILEGES ON DATABASE photo_album TO vagrant;"'
     DEBIAN_FRONTEND=noninteractive apt-get install -y python-dev libjpeg-dev zlib1g-dev
-    DEBIAN_FRONTEND=noninteractive apt-get install -y python-pip
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python-pip rubygems
     DEBIAN_FRONTEND=noninteractive apt-get install -y cifs-utils
     DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
     DEBIAN_FRONTEND=noninteractive cp /vagrant/nginx.test /etc/nginx/sites-available/photo_album
@@ -23,11 +23,12 @@ $dependencies = <<SCRIPT
     DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
     DEBIAN_FRONTEND=noninteractive sh -c 'cd /vagrant && npm install'
     DEBIAN_FRONTEND=noninteractive pip install -r /vagrant/requirements/local.txt
+    DEBIAN_FRONTEND=noninteractive gem install --no-user-install compass -v 0.12.7
     DEBIAN_FRONTEND=noninteractive ln -s /vagrant/node_modules/grunt-cli/bin /home/vagrant/bin
     DEBIAN_FRONTEND=noninteractive service nginx start
     DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py syncdb'
     DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py migrate'
-    DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py collectstatic --noinput -l'
+    DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py collectstatic --noinput -l -i sass'
 SCRIPT
 
 Vagrant.configure('2') do |config|

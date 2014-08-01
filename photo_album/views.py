@@ -1,5 +1,6 @@
 import os
 from config.settings import PHOTOALBUM_BASE_DIR, PHOTOALBUM_REWRITE
+from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 
 class PhotosView(ListView):
@@ -15,7 +16,6 @@ class PhotosView(ListView):
 class PhotosDirView(ListView):
 
     template_name = 'pages/photos_dir.html'
-    context_object_name = 'photos'
     paginate_by = 35
 
     def get_queryset(self):
@@ -29,20 +29,29 @@ class PhotosDirView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PhotosDirView, self).get_context_data(**kwargs)
-        context['start'] = 1
-        context['end'] = 35
-        context['total'] = len(self.photos)
         context['photo_dir'] = self.photo_dir
         return context
 
+class PhotoView(TemplateView):
+
+    template_name = 'pages/photo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PhotoView, self).get_context_data(**kwargs)
+        context['photo_dir'] = kwargs['photo_dir']
+        context['photo_file'] = kwargs['photo_file']
+        context['photo_path'] = os.path.join(PHOTOALBUM_REWRITE,
+                                             context['photo_dir'],
+                                             context['photo_file'])
+        return context
+
 class Photo:
-    def __init__(self, thumb_path, image_path):
+    def __init__(self, name, thumb_path):
+        self.name = name
         self.thumb_path = thumb_path
-        self.image_path = image_path
 
 def create_photo(photo_dir, filename):
     pieces = os.path.splitext(filename)
     thumb_file = pieces[0] + '.thumb' + pieces[1]
-    name = filename
-    return Photo(os.path.join(PHOTOALBUM_REWRITE, photo_dir, thumb_file),
-                 os.path.join(PHOTOALBUM_REWRITE, photo_dir, filename))
+    return Photo(filename, os.path.join(PHOTOALBUM_REWRITE,
+                                        photo_dir, thumb_file))

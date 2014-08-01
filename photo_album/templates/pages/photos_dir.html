@@ -3,12 +3,33 @@
 {% block title %}Photo Album - {{ photo_dir }}{% endblock %}
 
 {% block content %}
-<h2>{{ photo_dir }}<small>{{ start }} - {{ end }} of {{ total }} photos</small></h2>
+<h2>{{ photo_dir }}<small>{{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ paginator.count }} photos</small></h2>
+
+{% if page_obj.has_other_pages %}
+<ul class="nav nav-pills">
+
+{% if page_obj.has_previous %}
+	<li><a href="?page={{ page_obj.previous_page_number }}">
+{% else %}
+	<li class="disabled"><a>
+{% endif %}
+	<span class="glyphicon glyphicon-chevron-left" /></a></li>
+
+	<li><h4>{{ page_obj.number }} of {{ paginator.num_pages }}</h4></li>
+
+{% if page_obj.has_next %}
+	<li><a href="?page={{ page_obj.next_page_number }}">
+{% else %}
+	<li class="disabled"><a>
+{% endif %}
+	<span class="glyphicon glyphicon-chevron-right" /></a></li>
+</ul>
+{% endif %}
 
 <ul class="list-inline">
-{% for photo in photos %}
+{% for photo in object_list %}
 <li>
-	<a href="{{ photo.image_path }}">
+	<a href="{{ photo_dir }}/{{ photo.name }}">
 		<img src="{{ photo.thumb_path }}"
 		     class="img-responsive img-thumbnail"
 		     alt="{{ photo.name }}" />
