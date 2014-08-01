@@ -38,13 +38,38 @@ class PhotoView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PhotoView, self).get_context_data(**kwargs)
-        # has_previous, previous_link (just image file name)
-        # has_next, next_link (just image file name)
-        context['photo_dir'] = kwargs['photo_dir']
-        context['photo_file'] = kwargs['photo_file']
+        photo_dir = kwargs['photo_dir']
+        photo_file = kwargs['photo_file']
+        context['photo_dir'] = photo_dir
+        context['photo_file'] = photo_file
         context['photo_path'] = os.path.join(PHOTOALBUM_REWRITE,
-                                             context['photo_dir'],
-                                             context['photo_file'])
+                                             photo_dir,
+                                             photo_file)
+
+        photo_filenames = os.listdir(os.path.join(PHOTOALBUM_BASE_DIR,
+                                                  photo_dir))
+        photo_filenames = [photo for photo in photo_filenames if 'thumb' not in photo]
+        photo_filenames.sort()
+        previous_link = None
+        next_link = None
+        has_previous = False
+        has_next = False
+        hit_target = False
+        for photo in photo_filenames:
+            if hit_target:
+                next_link = photo
+                has_next = True
+                break
+            elif photo == photo_file:
+                hit_target = True
+            else:
+                previous_link = photo
+                has_previous = True
+
+        context['has_previous'] = has_previous
+        context['has_next'] = has_next
+        context['previous_link'] = previous_link
+        context['next_link'] = next_link
         return context
 
 class Photo:

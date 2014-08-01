@@ -29,7 +29,7 @@
 <ul class="list-inline">
 {% for photo in object_list %}
 <li>
-	<a href="{{ photo_dir }}/{{ photo.name }}">
+	<a href="./{{ photo.name }}">
 		<img src="{{ photo.thumb_path }}"
 		     class="img-responsive img-thumbnail"
 		     alt="{{ photo.name }}" />
