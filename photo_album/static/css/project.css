@@ -1,39 +1,39 @@
-/* line 5, ../sass/project.scss */
+/* line 6, ../sass/project.scss */
 .alert-debug {
   color: black;
   background-color: white;
   border-color: #d6e9c6;
 }
 
-/* line 11, ../sass/project.scss */
+/* line 12, ../sass/project.scss */
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
 
-/* line 17, ../sass/project.scss */
+/* line 18, ../sass/project.scss */
 .alert-success {
   color: #468847;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
-/* line 23, ../sass/project.scss */
+/* line 24, ../sass/project.scss */
 .alert-warning {
   color: black;
   background-color: orange;
   border-color: #d6e9c6;
 }
 
-/* line 29, ../sass/project.scss */
+/* line 30, ../sass/project.scss */
 .alert-error {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
 }
 
-/* line 35, ../sass/project.scss */
+/* line 36, ../sass/project.scss */
 img.ri {
   position: absolute;
   max-width: 80%;
@@ -43,25 +43,25 @@ img.ri {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
 }
 
-/* line 44, ../sass/project.scss */
+/* line 45, ../sass/project.scss */
 img.ri:empty {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate -50%, -50%;
+  -moz-transform: translate -50%, -50%;
+  -ms-transform: translate -50%, -50%;
+  -o-transform: translate -50%, -50%;
+  transform: translate -50%, -50%;
 }
 
 @media screen and (orientation: portrait) {
-  /* line 55, ../sass/project.scss */
+  /* line 52, ../sass/project.scss */
   img.ri {
     max-width: 90%;
   }
 }
 @media screen and (orientation: landscape) {
-  /* line 59, ../sass/project.scss */
+  /* line 56, ../sass/project.scss */
   img.ri {
     max-height: 90%;
   }
