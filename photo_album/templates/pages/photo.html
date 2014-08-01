@@ -4,8 +4,35 @@
 
 {% block content %}
 
-<div class="img-container">
-    <img src="{{ photo_path }}" class="ri" />
-</div>
+<ul class="pager">
+
+{% if has_previous %}
+	<li><a href="{{ previous_link }}">
+{% else %}
+	<li class="disabled"><a>
+{% endif %}
+	Previous</a></li>
+
+{% if has_next %}
+	<li><a href="{{ next_link }}">
+{% else %}
+	<li class="disabled"><a>
+{% endif %}
+	Next</a></li>
+</ul>
+
+<ul class="list-inline">
+{% for photo in object_list %}
+<li>
+	<a href="{{ photo_dir }}/{{ photo.name }}">
+		<img src="{{ photo.thumb_path }}"
+		     class="img-responsive img-thumbnail"
+		     alt="{{ photo.name }}" />
+	</a>
+</li>
+{% endfor %}
+</ul>
+
+<img src="{{ photo_path }}" class="ri" />
 
 {% endblock %}

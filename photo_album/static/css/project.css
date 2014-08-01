@@ -47,11 +47,11 @@ img.ri {
 img.ri:empty {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -42%);
+  -moz-transform: translate(-50%, -42%);
+  -ms-transform: translate(-50%, -42%);
+  -o-transform: translate(-50%, -42%);
+  transform: translate(-50%, -42%);
 }
 
 @media screen and (orientation: portrait) {
@@ -63,6 +63,6 @@ img.ri:empty {
 @media screen and (orientation: landscape) {
   /* line 60, ../sass/project.scss */
   img.ri {
-    max-height: 90%;
+    max-height: 80%;
   }
 }

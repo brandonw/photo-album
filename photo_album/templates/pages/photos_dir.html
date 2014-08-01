@@ -6,7 +6,7 @@
 <h2>{{ photo_dir }}<small>{{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ paginator.count }} photos</small></h2>
 
 {% if page_obj.has_other_pages %}
-<ul class="nav nav-pills">
+<ul class="pager">
 
 {% if page_obj.has_previous %}
 	<li><a href="?page={{ page_obj.previous_page_number }}">
@@ -15,7 +15,7 @@
 {% endif %}
 	<span class="glyphicon glyphicon-chevron-left" /></a></li>
 
-	<li><h4>{{ page_obj.number }} of {{ paginator.num_pages }}</h4></li>
+	<li>{{ page_obj.number }} of {{ paginator.num_pages }}</li>
 
 {% if page_obj.has_next %}
 	<li><a href="?page={{ page_obj.next_page_number }}">
