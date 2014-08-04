@@ -17,15 +17,17 @@ $dependencies = <<SCRIPT
     DEBIAN_FRONTEND=noninteractive mkdir /media/album
     DEBIAN_FRONTEND=noninteractive echo "//waskiewicz-server/home-media /media/album cifs guest 0 0" >> /etc/fstab
     DEBIAN_FRONTEND=noninteractive mount -a
+    DEBIAN_FRONTEND=noninteractive service nginx start
     DEBIAN_FRONTEND=noninteractive apt-get install -y python-software-properties python g++ make
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:chris-lea/node.js
     DEBIAN_FRONTEND=noninteractive apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
-    DEBIAN_FRONTEND=noninteractive sh -c 'cd /vagrant && npm install'
-    DEBIAN_FRONTEND=noninteractive pip install -r /vagrant/requirements/local.txt
-    DEBIAN_FRONTEND=noninteractive gem install --no-user-install compass -v 0.12.7
-    DEBIAN_FRONTEND=noninteractive ln -s /vagrant/node_modules/grunt-cli/bin /home/vagrant/bin
-    DEBIAN_FRONTEND=noninteractive service nginx start
+    DEBIAN_FRONTEND=noninteractive su - vagrant -c 'sh -c "cd /vagrant && npm install"'
+    DEBIAN_FRONTEND=noninteractive su - vagrant -c 'pip install --user -r /vagrant/requirements/local.txt'
+    DEBIAN_FRONTEND=noninteractive su - vagrant -c 'gem install --user-install compass -v 0.12.7'
+    DEBIAN_FRONTEND=noninteractive echo 'PATH="$HOME/.gem/ruby/1.8/bin:$PATH"' >> /home/vagrant/.profile
+    DEBIAN_FRONTEND=noninteractive echo 'PATH="/vagrant/node_modules/.bin:$PATH"' >> /home/vagrant/.profile
+    DEBIAN_FRONTEND=noninteractive echo 'PATH="$HOME/.local/bin:$PATH"' >> /home/vagrant/.profile
     DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py syncdb'
     DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py migrate'
     DEBIAN_FRONTEND=noninteractive su - vagrant -c 'python /vagrant/photo_album/manage.py collectstatic --noinput -l -i sass'
