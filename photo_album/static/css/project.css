@@ -34,35 +34,25 @@
 }
 
 /* line 36, ../sass/project.scss */
-img.ri {
-  position: absolute;
-  max-width: 80%;
-  top: 10%;
-  left: 10%;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+.photo-container img {
+  width: 100%;
+  height: auto;
 }
 
-/* line 45, ../sass/project.scss */
-img.ri:empty {
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -42%);
-  -moz-transform: translate(-50%, -42%);
-  -ms-transform: translate(-50%, -42%);
-  -o-transform: translate(-50%, -42%);
-  transform: translate(-50%, -42%);
+/* line 41, ../sass/project.scss */
+.photo-lg {
+  width: 800px;
+  height: 700px;
 }
 
-@media screen and (orientation: portrait) {
-  /* line 56, ../sass/project.scss */
-  img.ri {
-    max-width: 90%;
-  }
+/* line 46, ../sass/project.scss */
+.photo-md {
+  width: 750px;
+  height: 600px;
 }
-@media screen and (orientation: landscape) {
-  /* line 60, ../sass/project.scss */
-  img.ri {
-    max-height: 80%;
-  }
+
+/* line 51, ../sass/project.scss */
+.photo-sm {
+  width: 600px;
+  height: 600px;
 }

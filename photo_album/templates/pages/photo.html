@@ -6,34 +6,34 @@
 
 <ul class="pager">
 
-    <li><a href=".">Up</a></li>
 {% if has_previous %}
 	<li><a href="{{ previous_link }}">
 {% else %}
 	<li class="disabled"><a>
 {% endif %}
-	Previous</a></li>
+    Previous</a></li>
+
+    <li><a href=".">Up</a></li>
 
 {% if has_next %}
 	<li><a href="{{ next_link }}">
 {% else %}
 	<li class="disabled"><a>
 {% endif %}
-	Next</a></li>
+    Next</a></li>
 </ul>
 
-<ul class="list-inline">
-{% for photo in object_list %}
-<li>
-	<a href="{{ photo_dir }}/{{ photo.name }}">
-		<img src="{{ photo.thumb_path }}"
-		     class="img-responsive img-thumbnail"
-		     alt="{{ photo.name }}" />
-	</a>
-</li>
-{% endfor %}
-</ul>
-
-<img src="{{ photo_path }}" class="ri" />
+<div class="hidden-xs hidden-sm hidden-md photo-lg photo-container center-block">
+    <img src="{{ photo_path }}" />
+</div>
+<div class="hidden-xs hidden-sm hidden-lg photo-md photo-container center-block">
+    <img src="{{ photo_path }}" />
+</div>
+<div class="hidden-xs hidden-md hidden-lg photo-sm photo-container center-block">
+    <img src="{{ photo_path }}" />
+</div>
+<div class="hidden-sm hidden-md hidden-lg photo-xs photo-container center-block">
+    <img src="{{ photo_path }}" />
+</div>
 
 {% endblock %}
