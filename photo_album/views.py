@@ -1,4 +1,5 @@
 import os
+from PIL import Image
 from config.settings import PHOTOALBUM_BASE_DIR, PHOTOALBUM_REWRITE
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
@@ -45,6 +46,15 @@ class PhotoView(TemplateView):
         context['photo_path'] = os.path.join(PHOTOALBUM_REWRITE,
                                              photo_dir,
                                              photo_file)
+
+        physical_path = os.path.join(PHOTOALBUM_BASE_DIR,
+                                     photo_dir,
+                                     photo_file)
+        image = Image.open(physical_path)
+        if image.size[0] > image.size[1]:
+            context['portrait'] = False
+        else:
+            context['portrait'] = True
 
         photo_filenames = os.listdir(os.path.join(PHOTOALBUM_BASE_DIR,
                                                   photo_dir))

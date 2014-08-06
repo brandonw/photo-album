@@ -40,19 +40,43 @@
 }
 
 /* line 41, ../sass/project.scss */
-.photo-lg {
-  width: 800px;
-  height: 700px;
+.portrait .photo-lg {
+  width: 335px;
+  height: 325px;
 }
 
 /* line 46, ../sass/project.scss */
-.photo-md {
-  width: 750px;
+.landscape .photo-lg {
+  width: 600px;
   height: 600px;
 }
 
 /* line 51, ../sass/project.scss */
-.photo-sm {
+.portrait .photo-md {
   width: 600px;
   height: 600px;
+}
+
+/* line 56, ../sass/project.scss */
+.landscape .photo-md {
+  width: 600px;
+  height: 600px;
+}
+
+/* line 61, ../sass/project.scss */
+.portrait .photo-sm {
+  width: 650px;
+  height: 650px;
+}
+
+/* line 66, ../sass/project.scss */
+.landscape .photo-sm {
+  width: 600px;
+  height: 600px;
+}
+
+/* line 71, ../sass/project.scss */
+.portrait .photo-xs {
+  width: 220px;
+  height: 220px;
 }

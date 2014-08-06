@@ -38,17 +38,37 @@
   height: auto;
 }
 
-.photo-lg {
-  width: 800px;
-  height: 700px;
+.portrait .photo-lg {
+  width: 335px;
+  height: 325px;
 }
 
-.photo-md {
-  width: 750px;
-  height: 600px;
-}
-
-.photo-sm {
+.landscape .photo-lg {
   width: 600px;
   height: 600px;
+}
+
+.portrait .photo-md {
+  width: 600px;
+  height: 600px;
+}
+
+.landscape .photo-md {
+  width: 600px;
+  height: 600px;
+}
+
+.portrait .photo-sm {
+  width: 650px;
+  height: 650px;
+}
+
+.landscape .photo-sm {
+  width: 600px;
+  height: 600px;
+}
+
+.portrait .photo-xs {
+  width: 220px;
+  height: 220px;
 }

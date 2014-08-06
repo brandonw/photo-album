@@ -23,17 +23,23 @@
     Next</a></li>
 </ul>
 
-<div class="hidden-xs hidden-sm hidden-md photo-lg photo-container center-block">
-    <img src="{{ photo_path }}" />
-</div>
-<div class="hidden-xs hidden-sm hidden-lg photo-md photo-container center-block">
-    <img src="{{ photo_path }}" />
-</div>
-<div class="hidden-xs hidden-md hidden-lg photo-sm photo-container center-block">
-    <img src="{{ photo_path }}" />
-</div>
-<div class="hidden-sm hidden-md hidden-lg photo-xs photo-container center-block">
-    <img src="{{ photo_path }}" />
+{% if portrait %}
+<div class="portrait">
+{% else %}
+<div class="landscape">
+{% endif %}
+    <span class="hidden-xs hidden-sm hidden-md photo-lg photo-container center-block">
+        <img src="{{ photo_path }}" />
+    </span>
+    <span class="hidden-xs hidden-sm hidden-lg photo-md photo-container center-block">
+        <img src="{{ photo_path }}" />
+    </span>
+    <span class="hidden-xs hidden-md hidden-lg photo-sm photo-container center-block">
+        <img src="{{ photo_path }}" />
+    </span>
+    <span class="hidden-sm hidden-md hidden-lg photo-xs photo-container center-block">
+        <img src="{{ photo_path }}" />
+    </span>
 </div>
 
 {% endblock %}
