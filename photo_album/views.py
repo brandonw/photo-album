@@ -12,7 +12,7 @@ class PhotosView(ListView):
     def get_queryset(self):
         photo_dirs = os.listdir(PHOTOALBUM_BASE_DIR)
         photo_dirs.sort()
-        return photo_dirs
+        return [create_photo_dir(photo_dir) for photo_dir in photo_dirs]
 
 class PhotosDirView(ListView):
 
@@ -87,8 +87,37 @@ class Photo:
         self.name = name
         self.thumb_path = thumb_path
 
+class PhotoDir:
+    def __init__(self, dirname, photo1, photo2, photo3, photo4):
+        self.dirname = dirname
+        self.photo1 = photo1
+        self.photo2 = photo2
+        self.photo3 = photo3
+        self.photo4 = photo4
+
 def create_photo(photo_dir, filename):
     pieces = os.path.splitext(filename)
     thumb_file = pieces[0] + '.thumb' + pieces[1]
     return Photo(filename, os.path.join(PHOTOALBUM_REWRITE,
                                         photo_dir, thumb_file))
+
+def create_photo_dir(dirname):
+    fulldir = os.path.join(PHOTOALBUM_BASE_DIR,
+                           dirname)
+    photos = [photo for photo in os.listdir(fulldir) if 'thumb' in photo]
+    photos.sort()
+
+    photo1 = None
+    photo2 = None
+    photo3 = None
+    photo4 = None
+    if len(photos) > 0:
+        photo1 = os.path.join(PHOTOALBUM_REWRITE, dirname, photos[0])
+    if len(photos) > 1:
+        photo2 = os.path.join(PHOTOALBUM_REWRITE, dirname, photos[1])
+    if len(photos) > 2:
+        photo3 = os.path.join(PHOTOALBUM_REWRITE, dirname, photos[2])
+    if len(photos) > 3:
+        photo4 = os.path.join(PHOTOALBUM_REWRITE, dirname, photos[3])
+
+    return PhotoDir(dirname, photo1, photo2, photo3, photo4)

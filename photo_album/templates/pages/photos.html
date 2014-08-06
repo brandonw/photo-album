@@ -3,9 +3,23 @@
 {% block title %}Photo Album - Photos{% endblock %}
 
 {% block content %}
-<ul>
+<ul class="nav">
 {% for dir in photo_dirs %}
-<li><a href="{{ dir }}">{{ dir }}</a></li>
+<li><a href="{{ dir.dirname }}">
+{% if dir.photo1 %}
+    <img class="img-thumbnail" src="{{ dir.photo1 }}" />
+{% endif %}
+{% if dir.photo2 %}
+    <img class="img-thumbnail" src="{{ dir.photo2 }}" />
+{% endif %}
+{% if dir.photo3 %}
+    <img class="img-thumbnail" src="{{ dir.photo3 }}" />
+{% endif %}
+{% if dir.photo4 %}
+    <img class="img-thumbnail" src="{{ dir.photo4 }}" />
+{% endif %}
+<h4>{{ dir.dirname }}</h4></a>
+</li>
 {% endfor %}
 </ul>
 {% endblock %}
